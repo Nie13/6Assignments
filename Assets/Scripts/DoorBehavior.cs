@@ -8,6 +8,9 @@ public class DoorBehavior : MonoBehaviour
     public Vector3 movementAxis;
     public float distance;
 
+    //initial gate status
+    public bool gateClosed;
+
     //open and closed positions of this door
     private Vector3 openPos;
     private Vector3 closedPos;
@@ -18,8 +21,16 @@ public class DoorBehavior : MonoBehaviour
     private void Start()
     {
         //Assume the door starts closed. how would you fix this if you can't make this assumption?
-        closedPos = transform.position;
-        openPos = closedPos + (movementAxis * distance);
+        if (gateClosed)
+        {
+            closedPos = transform.position;
+            openPos = closedPos + (movementAxis * distance);
+        } else
+        {
+            openPos = transform.position;
+            closedPos = openPos - (movementAxis * distance);
+        }
+        
     }
 
     public void CloseGate()
