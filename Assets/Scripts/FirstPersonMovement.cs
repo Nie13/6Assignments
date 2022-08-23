@@ -17,12 +17,14 @@ public class FirstPersonMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log("Fixed Update");
         Vector3 localDirection = transform.TransformDirection(direction);
         rb.MovePosition(rb.position + (localDirection * speed * Time.deltaTime));
     }
 
     public void OnPlayerMove(InputValue value)
     {
+        Debug.Log("direction pressed");
         Vector2 inputVector = value.Get<Vector2>();
         direction = new Vector3(inputVector.x, 0, inputVector.y);
     }
